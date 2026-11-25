@@ -1,69 +1,84 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-export default function Home() {
+const features = [
+  {
+    title: "Secure document workflows",
+    description:
+      "Upload, review, approve, and reject documents through role-based workflows.",
+  },
+  {
+    title: "AI-assisted review",
+    description:
+      "Analyze documents for grammar issues, summaries, and improvement suggestions.",
+  },
+  {
+    title: "Enterprise-ready architecture",
+    description:
+      "Built with Next.js App Router, Server Components, Server Actions, and Prisma.",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="min-h-screen bg-slate-950 text-white">
+      <section className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-20">
+        <div className="flex items-center justify-between">
+          <h1 className="text-xl font-bold">DocFlow AI</h1>
+
+          <nav className="flex items-center gap-3">
+            <Link
+              href="/login"
+              className="inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Login
+            </Link>
+            <Link
+              href="/dashboard"
+              className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              Learning
-            </a>{" "}
-            center.
+              Dashboard
+            </Link>
+          </nav>
+        </div>
+
+        <div className="max-w-3xl space-y-6">
+          <p className="w-fit rounded-full border border-slate-700 px-4 py-1 text-sm text-slate-300">
+            AI-powered document approval platform
+          </p>
+
+          <h2 className="text-4xl font-bold tracking-tight md:text-6xl">
+            Review, improve, and approve documents with confidence.
+          </h2>
+
+          <p className="text-lg text-slate-300">
+            DocFlow AI helps teams upload documents, detect grammar issues,
+            generate AI summaries, and route files through secure approval
+            workflows.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          {features.map((feature) => (
+            <Card key={feature.title} className="border-slate-800 bg-slate-900">
+              <CardHeader>
+                <CardTitle className="text-white">{feature.title}</CardTitle>
+                <CardDescription className="text-slate-400">
+                  {feature.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent />
+            </Card>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
